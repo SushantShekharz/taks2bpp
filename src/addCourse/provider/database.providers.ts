@@ -1,4 +1,3 @@
-
 import { Sequelize } from 'sequelize-typescript';
 import { addCourse } from '../entity/addCourse.entity';
 

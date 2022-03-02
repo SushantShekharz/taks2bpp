@@ -1,6 +1,6 @@
 
 import { Table, Column, Model } from 'sequelize-typescript';
-// import sequelize from 'sequelize';
+
 
 @Table
 export class logintable extends Model {
