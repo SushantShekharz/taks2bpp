@@ -17,11 +17,15 @@ export class LoginController {
   @Post('registration')
   async registration(@Body() b) {
     const checkingofusername = await this.loginservice.countofusername(b.username)
+
     //for creating hashed password out of normal password coming out from body
     if (checkingofusername.length == 0) {
-      this.loginservice.createOrInsert(b.username, b.password, b.fullname, b.experience, b.typeofuser)
+      this.loginservice.createOrInsert(b.username, b.password, b.fullname, b.experience,b.typeofuser)
+    
       return { "sucess": true }
+
     }
+
     return { "sucess": false }
   }
   // @UseGuards(JwtAuthGuard)

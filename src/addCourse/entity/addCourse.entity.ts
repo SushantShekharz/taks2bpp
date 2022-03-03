@@ -11,6 +11,7 @@ export class addCourse extends Model {
 
   @Column
   courseFees: string;
+  
 
   @Column({
       type: DataType.STRING(5000)

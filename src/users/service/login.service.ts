@@ -12,7 +12,7 @@ export class loginservice {
     const hashedpassword = await this.validationforlogin(username)
     try {
       const isMatch = await bcrypt.compare(password, hashedpassword[0].password);
-  
+
       const user = await this.validationforlogin(username);
       if (user.length >= 1 && isMatch) {
         return true
@@ -27,25 +27,19 @@ export class loginservice {
   async validatejwt(username, password): Promise<any> {
     const user = await this.validationforlogin(username);
     const hashedpassword = await this.validationforlogin(username)
-
     try {
       var isMatch = false
-if(password==hashedpassword[0].password)
-{
-  isMatch=true
-}
-
+      if (password == hashedpassword[0].password) {
+        isMatch = true
+      }
       const user = await this.validationforlogin(username);
-     
       if (user.length >= 1 && isMatch) {
-       console.log("OKKKKKKKKK")
         return true
-   
       }
       else {
         return false
       }
-    } 
+    }
     catch (error) {
       throw new UnauthorizedException();
     }
@@ -56,12 +50,12 @@ if(password==hashedpassword[0].password)
   async countofusername(username: any): Promise<any> {
     return this.login.findAll<logintable>({ where: { username: username } })
   }
-  async createOrInsert(username: any, password: any, fullname: any, experience: any, typeofuser: any): Promise<any> {
+  async createOrInsert(username: any, password: any, fullname: any, experience: any,typeofuser): Promise<any> {
     const saltOrRounds = 10;
     const hash = await bcrypt.hash(password, saltOrRounds)
-    return this.login.create({ username: username, password: hash, fullname: fullname, experience: experience, typeofuser: typeofuser });
+    return this.login.create({ username: username, password: hash, fullname: fullname, experience: experience ,typeofuser:typeofuser});
   }
-  async listOfUser(): Promise<any>{
-    return this.login.findAll<logintable>({where:{typeofuser:"user"},attributes:["username","fullname","experience"]})
+  async listOfUser(): Promise<any> {
+    return this.login.findAll<logintable>({ where: { typeofuser: "user" }, attributes: ["username", "fullname", "experience"] })
   }
 }
