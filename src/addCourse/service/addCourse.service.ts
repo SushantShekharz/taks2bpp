@@ -96,23 +96,23 @@ getPagination = (limit, offset) => {
 
 
 
-  async search(searched,columnName):Promise<any>{
+  // async search(searched,columnName):Promise<any>{
 
-    let search=searched?'%'+searched+'%':"% %"
+  //   let search=searched?'%'+searched+'%':"% %"
 
-    return await  this.addcourse.findAll({
-      where:{courseName:{[Op.substring]:search }} })
+  //   return await  this.addcourse.findAll({
+  //     where:{courseName:{[Op.substring]:search }} })
  
-  }
+  // }
 
 
 
 
 
-// async search(searched,columnName):Promise<any>{
-//   let search=searched?'%'+searched+'%':"% %"
-//   let nameofcolumn=columnName?columnName:"courseName"
-//   return await this.addcourse.findAll({where:{nameofcolumn:{[Op.substring]:search}}})
-// }
+async search(searched,columnName):Promise<any>{
+  let search=searched?'%'+searched+'%':"% %"
+  let nameofcolumn=columnName?columnName:"courseName"
+  return await this.addcourse.findAll({where:{[nameofcolumn]:{[Op.substring]:search}}})
+}
 
 }
